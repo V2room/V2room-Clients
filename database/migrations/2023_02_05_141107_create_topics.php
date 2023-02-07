@@ -4,28 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('topics', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
-    }
+return new class extends \LaravelSupports\Libraries\Supports\Databases\Migrations\CreateMigration {
+    protected string $table = 'topics';
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
+    protected function defaultUpTemplate(Blueprint $table)
     {
-        Schema::dropIfExists('topics');
+        $table->id();
+        $table->string('content', 512)->nullable(false)->comment('내용');
+        $table->foreignIdFor('');
     }
 };

@@ -9,6 +9,5 @@ return new class extends \LaravelSupports\Libraries\Supports\Databases\Migration
     protected function defaultUpTemplate(Blueprint $table)
     {
         $table->id();
-        $table->timestamps();
     }
 };
