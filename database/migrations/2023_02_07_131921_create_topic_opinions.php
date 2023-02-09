@@ -15,7 +15,7 @@ return new class extends \LaravelSupports\Libraries\Supports\Databases\Migration
      protected function defaultUpTemplate(Blueprint $table): void
      {
          $table->id();
-         $table->foreignIdFor('');
+         $table->foreignIdFor(\App\Models\Room\Topic::class);
      }
 
 };

@@ -11,6 +11,6 @@ return new class extends \LaravelSupports\Libraries\Supports\Databases\Migration
     {
         $table->id();
         $table->string('content', 512)->nullable(false)->comment('내용');
-        $table->foreignIdFor('');
+        $table->foreignIdFor(\App\Models\Room\Room::class);
     }
 };
