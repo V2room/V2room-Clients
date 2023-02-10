@@ -2,6 +2,13 @@
 
 use Illuminate\Database\Schema\Blueprint;
 
+/**
+ * room 주제에 대한 의견
+ *
+ * @author  WilsonParker
+ * @added   2023/02/10
+ * @updated 2023/02/10
+ */
 return new class extends \LaravelSupports\Libraries\Supports\Databases\Migrations\CreateMigration {
     protected string $table = 'topic_opinions';
 
