@@ -193,7 +193,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        App\Library\LaravelSupports\app\Database\Migrations\MigrationServiceProvider::class,
 
     ],
 
