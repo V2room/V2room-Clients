@@ -15,9 +15,16 @@ return new class extends \LaravelSupports\Libraries\Supports\Databases\Migration
     protected function defaultUpTemplate(Blueprint $table)
     {
         $table->id();
-        $table->timestamp('close_reserved_at');
-        $table->timestamp('closed_at');
-        $table->foreignIdFor(\App\Models\Room\RoomStatus::class)
+        $table->string('title', 512)->nullable(false)->comment('주제');
+        $table->timestamp('close_reserved_at')->comment('close 예약 날짜');
+        $table->timestamp('closed_at')->comment('close 날짜');
+
+        $table->string('status', 32);
+        $this->foreignCode($table, 'status', \App\Models\Room\RoomStatus::class)
+             ->onUpdate('cascade')
+             ->onDelete('cascade');
+
+        $table->foreignIdFor(\App\Models\User\User::class)
               ->constrained()
               ->onUpdate('cascade')
               ->onDelete('cascade');

@@ -3,14 +3,14 @@
 use Illuminate\Database\Schema\Blueprint;
 
 /**
- * room 주제에 대한 의견
+ * room 통계 정보
  *
  * @author  WilsonParker
  * @added   2023/02/10
  * @updated 2023/02/10
  */
 return new class extends \LaravelSupports\Libraries\Supports\Databases\Migrations\CreateMigration {
-    protected string $table = 'topic_opinions';
+    protected string $table = 'room_statistics';
 
     /**
      * Run the migrations.
@@ -21,9 +21,13 @@ return new class extends \LaravelSupports\Libraries\Supports\Databases\Migration
     protected function defaultUpTemplate(Blueprint $table): void
     {
         $table->id();
-        $table->text('content')->nullable(false)->comment('내용');
+        $table->unsignedInteger('scrap_count')->comment('스크랩 수');
+        $table->unsignedInteger('share_count')->comment('공유 수');
+        $table->unsignedInteger('comment_count')->comment('댓글 수');
+        $table->unsignedInteger('like_count')->comment('좋아요 수');
+        $table->unsignedInteger('dislike_count')->comment('싫어요 수');
 
-        $table->foreignIdFor(\App\Models\Room\Topic::class)
+        $table->foreignIdFor(\App\Models\Room\Room::class)
               ->constrained()
               ->onUpdate('cascade')
               ->onDelete('cascade');
