@@ -4,7 +4,7 @@ namespace App\Models\Room;
 
 use App\Models\BaseModel;
 
-class Opinion extends BaseModel
+class TopicOpinion extends BaseModel
 {
     protected $table = 'topic_opinion';
 }
