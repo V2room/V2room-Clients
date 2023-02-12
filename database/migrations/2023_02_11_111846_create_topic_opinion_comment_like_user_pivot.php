@@ -27,21 +27,15 @@ return new class extends \LaravelSupports\Libraries\Supports\Databases\Migration
              ->onUpdate('cascade')
              ->onDelete('cascade');
 
-        $table->foreignIdFor(\App\Models\Room\TopicOpinionComment::class)
-              ->constrained()
-              ->onUpdate('cascade')
-              ->onDelete('cascade');
-
         $this->foreignIdForWithName($table, \App\Models\Room\TopicOpinionComment::class, 'comment')
-              ->onUpdate('cascade')
-              ->onDelete('cascade');
+             ->onUpdate('cascade')
+             ->onDelete('cascade');
 
-        $table->foreignIdFor(\App\Models\User\User::class)
-              ->constrained()
-              ->onUpdate('cascade')
-              ->onDelete('cascade');
+        $this->foreignIdForWithName($table, \App\Models\User\User::class, 'user')
+             ->onUpdate('cascade')
+             ->onDelete('cascade');
 
-        $table->unique(['topic_opinion_comment_id', 'user_id']);
+        $table->unique(['topic_opinion_comment_id', 'user_id'], 'topic_opinion_comment_user_unique');
     }
 
 };
