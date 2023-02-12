@@ -3,14 +3,14 @@
 use Illuminate\Database\Schema\Blueprint;
 
 /**
- * room 을 like, dislike 한 user 정보
+ * topic opinion comment 을 like, dislike 하는 user 정보
  *
  * @author  WilsonParker
  * @added   2023/02/11
  * @updated 2023/02/11
  */
 return new class extends \LaravelSupports\Libraries\Supports\Databases\Migrations\CreateMigration {
-    protected string $table = 'room_like_user_pivot';
+    protected string $table = 'topic_opinion_comment_like_user_pivot';
 
     /**
      * Run the migrations.
@@ -22,22 +22,19 @@ return new class extends \LaravelSupports\Libraries\Supports\Databases\Migration
     {
         $table->id();
 
-        $table->string('status', 32);
         $this->foreignCode($table, 'status', \App\Models\Common\LikeStatus::class)
              ->onUpdate('cascade')
              ->onDelete('cascade');
 
-        $table->foreignIdFor(\App\Models\Room\Room::class)
-              ->constrained()
-              ->onUpdate('cascade')
-              ->onDelete('cascade');
+        $this->foreignIdForWithName($table, \App\Models\Room\TopicOpinionComment::class, 'comment')
+             ->onUpdate('cascade')
+             ->onDelete('cascade');
 
-        $table->foreignIdFor(\App\Models\User\User::class)
-              ->constrained()
-              ->onUpdate('cascade')
-              ->onDelete('cascade');
+        $this->foreignIdForWithName($table, \App\Models\User\User::class, 'user')
+             ->onUpdate('cascade')
+             ->onDelete('cascade');
 
-        $table->unique(['room_id', 'user_id']);
+        $table->unique(['topic_opinion_comment_id', 'user_id'], 'topic_opinion_comment_user_unique');
     }
 
 };
