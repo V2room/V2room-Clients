@@ -194,6 +194,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Library\LaravelSupports\app\Database\Migrations\MigrationServiceProvider::class,
+        L5Swagger\L5SwaggerServiceProvider::class,
 
     ],
 
