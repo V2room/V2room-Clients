@@ -21,7 +21,7 @@ return new class extends \LaravelSupports\Libraries\Supports\Databases\Migration
         $table->text('content')->nullable(false)->comment('내용');
 
         $table->string('status', 32);
-        $this->foreignCode($table, 'status', \App\Models\Room\RoomStatus::class)
+        $this->foreignCode($table, 'status', \App\Models\Rooms\RoomStatus::class)
               ->onUpdate('cascade')
               ->onDelete('cascade');
     }

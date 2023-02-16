@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Room;
+namespace App\Repositories\Rooms;
 
 use App\Library\LaravelSupports\app\Database\Repositories\PaginateRepository;
 

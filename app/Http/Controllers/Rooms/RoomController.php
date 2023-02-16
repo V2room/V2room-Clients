@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Room;
+namespace App\Http\Controllers\Rooms;
 
 use App\Http\Controllers\Base\Controller;
 use App\Library\LaravelSupports\app\Database\Repositories\PaginateRepository;
-use App\Models\Room\Room;
+use App\Models\Rooms\Room;
 
 class RoomController extends Controller
 {
