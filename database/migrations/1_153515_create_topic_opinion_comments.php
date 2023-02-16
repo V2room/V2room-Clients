@@ -3,14 +3,14 @@
 use Illuminate\Database\Schema\Blueprint;
 
 /**
- * room 주제에 대한 의견
+ * topic opinion 의 comment
  *
  * @author  WilsonParker
- * @added   2023/02/10
- * @updated 2023/02/10
+ * @added   2023/02/11
+ * @updated 2023/02/11
  */
 return new class extends \LaravelSupports\Libraries\Supports\Databases\Migrations\CreateMigration {
-    protected string $table = 'topic_opinions';
+    protected string $table = 'topic_opinion_comments';
 
     /**
      * Run the migrations.
@@ -22,9 +22,8 @@ return new class extends \LaravelSupports\Libraries\Supports\Databases\Migration
     {
         $table->id();
         $table->text('content')->nullable(false)->comment('내용');
-        $table->unsignedInteger('agree_count')->nullable(false)->default(0)->comment('동의 수');
 
-        $table->foreignIdFor(\App\Models\Rooms\Topic::class)
+        $table->foreignIdFor(\App\Models\Room\TopicOpinion::class)
               ->constrained()
               ->onUpdate('cascade')
               ->onDelete('cascade');

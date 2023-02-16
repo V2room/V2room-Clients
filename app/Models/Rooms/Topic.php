@@ -10,6 +10,6 @@ class Topic extends BaseModel
 
     public function opinions(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Opinion::class);
+        return $this->hasMany(TopicOpinionComment::class);
     }
 }
