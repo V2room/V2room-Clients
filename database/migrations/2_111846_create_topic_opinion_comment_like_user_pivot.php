@@ -26,11 +26,11 @@ return new class extends \LaravelSupports\Libraries\Supports\Databases\Migration
              ->onUpdate('cascade')
              ->onDelete('cascade');
 
-        $this->foreignIdForWithName($table, \App\Models\Room\TopicOpinionComment::class, 'comment')
+        $this->foreignIdForWithName($table, \App\Models\Rooms\TopicOpinionComment::class, 'comment')
              ->onUpdate('cascade')
              ->onDelete('cascade');
 
-        $this->foreignIdForWithName($table, \App\Models\User\User::class, 'user')
+        $this->foreignIdForWithName($table, \App\Models\Users\User::class, 'user')
              ->onUpdate('cascade')
              ->onDelete('cascade');
 

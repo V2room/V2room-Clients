@@ -26,12 +26,12 @@ return new class extends \LaravelSupports\Libraries\Supports\Databases\Migration
              ->onUpdate('cascade')
              ->onDelete('cascade');
 
-        $table->foreignIdFor(\App\Models\Room\Room::class)
+        $table->foreignIdFor(\App\Models\Rooms\Room::class)
               ->constrained()
               ->onUpdate('cascade')
               ->onDelete('cascade');
 
-        $table->foreignIdFor(\App\Models\User\User::class)
+        $table->foreignIdFor(\App\Models\Users\User::class)
               ->constrained()
               ->onUpdate('cascade')
               ->onDelete('cascade');
