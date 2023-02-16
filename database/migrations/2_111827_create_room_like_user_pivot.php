@@ -3,14 +3,14 @@
 use Illuminate\Database\Schema\Blueprint;
 
 /**
- * room 통계 정보
+ * room 을 like, dislike 한 user 정보
  *
  * @author  WilsonParker
- * @added   2023/02/10
- * @updated 2023/02/10
+ * @added   2023/02/11
+ * @updated 2023/02/11
  */
 return new class extends \LaravelSupports\Libraries\Supports\Databases\Migrations\CreateMigration {
-    protected string $table = 'room_statistics';
+    protected string $table = 'room_like_user_pivot';
 
     /**
      * Run the migrations.
@@ -21,18 +21,22 @@ return new class extends \LaravelSupports\Libraries\Supports\Databases\Migration
     protected function defaultUpTemplate(Blueprint $table): void
     {
         $table->id();
-        $table->unsignedInteger('scrap_count')->comment('스크랩 수');
-        $table->unsignedInteger('share_count')->comment('공유 수');
-        $table->unsignedInteger('comment_count')->comment('댓글 수');
-        $table->unsignedInteger('like_count')->comment('좋아요 수');
-        $table->unsignedInteger('dislike_count')->comment('싫어요 수');
+
+        $this->foreignCode($table, 'status', \App\Models\Common\LikeStatus::class)
+             ->onUpdate('cascade')
+             ->onDelete('cascade');
 
         $table->foreignIdFor(\App\Models\Rooms\Room::class)
-              ->unique()
               ->constrained()
               ->onUpdate('cascade')
               ->onDelete('cascade');
 
+        $table->foreignIdFor(\App\Models\Users\User::class)
+              ->constrained()
+              ->onUpdate('cascade')
+              ->onDelete('cascade');
+
+        $table->unique(['room_id', 'user_id']);
     }
 
 };

@@ -19,12 +19,11 @@ return new class extends \LaravelSupports\Libraries\Supports\Databases\Migration
         $table->timestamp('close_reserved_at')->comment('close 예약 날짜');
         $table->timestamp('closed_at')->comment('close 날짜');
 
-        $table->string('status', 32);
-        $this->foreignCode($table, 'status', \App\Models\Room\RoomStatus::class)
+        $this->foreignCode($table, 'status', \App\Models\Rooms\RoomStatus::class)
              ->onUpdate('cascade')
              ->onDelete('cascade');
 
-        $table->foreignIdFor(\App\Models\User\User::class)
+        $table->foreignIdFor(\App\Models\Users\User::class)
               ->constrained()
               ->onUpdate('cascade')
               ->onDelete('cascade');

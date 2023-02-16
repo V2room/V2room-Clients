@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Models\Room;
+namespace App\Models\Rooms;
 
 use App\Models\BaseModel;
 
-class Opinion extends BaseModel
+class TopicOpinion extends BaseModel
 {
     protected $table = 'topic_opinion';
 }

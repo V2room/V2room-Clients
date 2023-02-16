@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Room;
+namespace App\Models\Rooms;
 
 use App\Models\BaseModel;
 
@@ -10,6 +10,6 @@ class Topic extends BaseModel
 
     public function opinions(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Opinion::class);
+        return $this->hasMany(TopicOpinionComment::class);
     }
 }
