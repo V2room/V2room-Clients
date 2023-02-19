@@ -41,7 +41,7 @@ return [
     |
     */
 
-    'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => (bool)env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -194,8 +194,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Library\LaravelSupports\app\Database\Migrations\MigrationServiceProvider::class,
+        \App\Providers\RouteServiceProvider::class,
         L5Swagger\L5SwaggerServiceProvider::class,
-
     ],
 
     /*
