@@ -11,6 +11,7 @@
         "inertiajs/inertia-laravel": "^0.6.3",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.2",
+        "laravel/scout": "^9.8",
         "laravel/tinker": "^2.7",
         "spatie/laravel-view-models": "^1.5",
         "tightenco/ziggy": "^1.0"
