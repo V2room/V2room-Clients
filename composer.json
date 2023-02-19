@@ -8,11 +8,13 @@
         "php": "^8.2",
         "darkaonline/l5-swagger": "^8.5",
         "guzzlehttp/guzzle": "^7.2",
+        "http-interop/http-factory-guzzle": "^1.2",
         "inertiajs/inertia-laravel": "^0.6.3",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.2",
         "laravel/scout": "^9.8",
         "laravel/tinker": "^2.7",
+        "meilisearch/meilisearch-php": "^1.0",
         "spatie/laravel-view-models": "^1.5",
         "tightenco/ziggy": "^1.0"
     },
@@ -64,7 +66,8 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "allow-plugins": {
-            "pestphp/pest-plugin": true
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
         }
     },
     "minimum-stability": "stable",
