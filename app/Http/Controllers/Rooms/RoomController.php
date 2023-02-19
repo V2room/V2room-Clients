@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Rooms;
 
-use App\Http\Controllers\Base\Controller;
+use App\Http\Controllers\Controller;
 use App\Library\LaravelSupports\app\Database\Repositories\PaginateRepository;
 use App\Models\Rooms\Room;
 
