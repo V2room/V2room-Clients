@@ -4,7 +4,6 @@ namespace Tests\Feature\Users;
 
 use App\Models\Users\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use LaravelSupports\Libraries\Supports\Databases\Traits\TransactionTrait;
 use Tests\TestCase;
 
 class UserTest extends TestCase
