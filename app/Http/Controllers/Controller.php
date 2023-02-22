@@ -15,7 +15,9 @@ class Controller extends \LaravelSupports\Controllers\BaseController
     {
         $locale = request('locale', config('app.locale'));
         App::setLocale($locale);
+        $this->before();
     }
 
+    protected function before() {}
 
 }

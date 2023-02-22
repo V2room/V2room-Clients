@@ -18,10 +18,6 @@ Route::get('/', function () {
     return redirect('dashboard');
 })->name('home');
 
-Route::get('/list', function () {
-    return view('list');
-})->name('list');
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
@@ -31,5 +27,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+Route::resource('feed', \App\Http\Controllers\Feed\FeedController::class);
 
 require __DIR__ . '/auth.php';
