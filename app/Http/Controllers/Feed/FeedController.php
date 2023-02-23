@@ -18,6 +18,11 @@ class FeedController extends Controller
         return $this->buildView('index', new BasicViewModel());
     }
 
+    public function create(): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+    {
+        return $this->buildView('create', new BasicViewModel());
+    }
+
     public function show(Room $model)
     {
         return $model;

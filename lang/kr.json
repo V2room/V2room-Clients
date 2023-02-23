@@ -1,13 +1,14 @@
 {
   "AppName": "브이룸",
   "Dashboard": "대시보드",
-  "Feed": "피드",
   "Log In": "로그인",
   "Log Out": "로그아웃",
   "Register": "회원가입",
   "Profile": "프로필",
   "Save": "저장",
   "Saved.": "저장됨",
+  "Feed": "피드",
+  "Create Post": "피드 작성",
 
   "Name": "이름",
   "Email": "이메일",
