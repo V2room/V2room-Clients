@@ -7,6 +7,7 @@ use App\Models\BaseModel;
 class Room extends BaseModel
 {
     protected $table = 'rooms';
+    protected $guarded = [];
 
     public function status(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
