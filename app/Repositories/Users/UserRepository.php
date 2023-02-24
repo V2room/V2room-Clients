@@ -3,9 +3,9 @@
 namespace App\Repositories\Users;
 
 
-use App\Repositories\BaseRepository;
+use App\Repositories\BasePaginateRepository;
 
-class UserRepository extends BaseRepository
+class UserRepository extends BasePaginateRepository
 {
 
 }

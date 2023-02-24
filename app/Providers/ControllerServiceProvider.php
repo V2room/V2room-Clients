@@ -3,9 +3,10 @@
 namespace App\Providers;
 
 use App\Http\Controllers\Feed\FeedController;
-use App\Library\LaravelSupports\app\Database\Repositories\PaginateRepository;
 use App\Models\Rooms\Room;
+use App\Repositories\BasePaginateRepository;
 use App\Repositories\Feeds\FeedRepository;
+use App\Services\Auth\AuthService;
 use Illuminate\Support\ServiceProvider;
 
 class ControllerServiceProvider extends ServiceProvider
@@ -17,6 +18,10 @@ class ControllerServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->singleton(AuthService::class, function ($app) {
+            return new AuthService();
+        });
+
         $this->buildRepository();
         $this->buildController();
     }
@@ -31,14 +36,14 @@ class ControllerServiceProvider extends ServiceProvider
     private function buildRepository()
     {
         $this->app->singleton(FeedRepository::class, function ($app) {
-            return new FeedRepository(new Room());
+            return new FeedRepository(new Room(), $app->make(AuthService::class));
         });
     }
 
     private function buildController()
     {
         $this->app->when(FeedController::class)
-                  ->needs(PaginateRepository::class)
+                  ->needs(BasePaginateRepository::class)
                   ->give(function ($app) {
                       return $app->make(FeedRepository::class);
                   });

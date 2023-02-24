@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers\Feed;
 
+use App\Enum\Room\RoomStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Feed\FeedRequest;
 use App\Http\VIewModels\Feed\FeedViewModel;
-use App\Library\LaravelSupports\app\Database\Repositories\PaginateRepository;
 use App\Models\Rooms\Room;
-use App\Services\Auth\AuthService;
+use App\Repositories\BasePaginateRepository;
+use Illuminate\Http\Request;
 use Throwable;
 
 class FeedController extends Controller
 {
     protected array $prefix = ['feed'];
 
-    public function __construct(private readonly PaginateRepository $repository)
+    public function __construct(private readonly BasePaginateRepository $repository)
     {
         parent::__construct();
     }
@@ -26,7 +27,7 @@ class FeedController extends Controller
 
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
     {
-        // return $this->repository->paginate(10);
+        $this->viewModel->setData($this->repository->paginate(10));
         return $this->buildView('index');
     }
 
@@ -35,21 +36,21 @@ class FeedController extends Controller
         return $this->buildView('create');
     }
 
-    public function store(FeedRequest $request, AuthService $authService)
+    public function store(FeedRequest $request)
     {
         $data = $request->validated();
-        return $this->runTransaction(function () use ($data, $authService) {
-            $data['user_id'] = $authService->getUser()->getKey();
-            $this->repository->store(collect($data)->except(['content', 'category'])->toArray());
+        return $this->runTransaction(function () use ($data) {
+            $data['status'] = RoomStatus::active->name;
+            $this->repository->store($data);
             return $this->redirectRouteWithMessage('success', 'feed.index');
         }, function (Throwable $throwable) {
             dd($throwable);
         });
     }
 
-    public function show(Room $model): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+    public function show(Request $request, $id): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
     {
-        $model = $this->repository->show($model);
+        $model = $this->repository->showById($id);
         $this->viewModel->setData($model);
         return $this->buildView('show');
     }
