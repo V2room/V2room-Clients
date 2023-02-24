@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Services\Auth;
 
 class PersonalAccessToken extends \Laravel\Sanctum\PersonalAccessToken
 {
