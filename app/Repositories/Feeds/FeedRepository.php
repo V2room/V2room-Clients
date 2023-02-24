@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Repositories\Rooms;
+namespace App\Repositories\Feeds;
 
 use App\Library\LaravelSupports\app\Database\Repositories\PaginateRepository;
 
-class RoomRepository extends PaginateRepository
+class FeedRepository extends PaginateRepository
 {
 
 }

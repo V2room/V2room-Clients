@@ -3,6 +3,10 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Feed') }}
         </h2>
+
+        <x-buttons.nav :href="route('feed.create')">
+            {{ __('Create') }}
+        </x-buttons.nav>
     </x-slot>
 
     <div class="py-8">

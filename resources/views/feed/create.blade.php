@@ -11,17 +11,17 @@
                 <div class="p-6">
                     <form method="POST" action="{{ route('feed.store') }}">
                         @csrf
-
                         <div class="mb-4">
                             <x-input-label for="title" :value="__('Title')"/>
                             <x-text-input id="title" name="title" type="text" class="mt-1 block w-full"/>
-                            <x-input-error :messages="$errors->updatePassword->get('title')" class="mt-2"/>
+                            {{--<x-input-error :messages="$errors->updatePassword->get('title')" class="mt-2"/>--}}
+                            {{--<x-input-error :messages="$errors->title" class="mt-2"/>--}}
                         </div>
 
                         <div class="mb-4">
                             {{--<x-input-label for="category" :value="__('Category')"/>--}}
-                            <x-forms.select-label :value="__('Category')" id="category" name="category_id" @items='[1,2]'/>
-                            <x-input-error :messages="$errors->updatePassword->get('category')" class="mt-2"/>
+                            <x-forms.select-label :value="__('Category')" id="category" @items='[1,2]'/>
+                            {{--<x-input-error :messages="$errors->category" class="mt-2"/>--}}
                         </div>
 
                         <div class="mb-4">
@@ -30,6 +30,7 @@
 
                         <div class="mb-4">
                             <x-forms.textarea-label id="content"/>
+                            {{--<x-input-error :messages="$errors->content" class="mt-2"/>--}}
                         </div>
 
                         <div class="flex items-center justify-end mt-4">
