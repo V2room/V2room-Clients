@@ -10,15 +10,15 @@
     </x-slot>
 
     <div class="py-8">
-        @for ($i = 0; $i < 10; $i++)
+        @foreach($data as $item)
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 rounded-xl overflow-hidden py-2">
                 <div class="flex space-x-4 items-center bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <a href="#" class="block">
                         <img src="https://picsum.photos/200/200" alt="Post Thumbnail" class="w-20 h-20 object-cover">
                     </a>
                     <div class="flex flex-col">
-                        <a href="#" class="text-lg font-medium text-gray-900 font-semibold text-indigo-50">
-                            Post Title
+                        <a href="{{ route('feed.show', $item) }}" class="text-lg font-medium text-gray-900 font-semibold text-indigo-50">
+                            {{ $item->title }}
                         </a>
                         <div class="mb-1">
                             <p class="text-sm text-gray-400 mb-1">category</p>
@@ -31,6 +31,8 @@
                     </div>
                 </div>
             </div>
-        @endfor
+        @endforeach
+
+        @link($data->links())
     </div>
 </x-app-layout>

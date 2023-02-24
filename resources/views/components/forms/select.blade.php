@@ -14,3 +14,4 @@
         <option class="block font-medium text-sm text-gray-700 dark:text-gray-300"> test2</option>
     @endisset
 </select>
+<x-input-error :messages="$errors->get($attributes['id'])" class="mt-2"/>

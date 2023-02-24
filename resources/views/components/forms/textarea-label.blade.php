@@ -6,3 +6,4 @@
     'name' => $attributes['id']
 ]) !!}>
 </textarea>
+<x-input-error :messages="$errors->get($attributes['id'])" class="mt-2"/>
