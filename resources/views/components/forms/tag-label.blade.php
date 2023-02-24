@@ -9,7 +9,7 @@
         const tagsContainer = document.querySelector('#tags-container');
 
         inputTag.addEventListener('keyup', function (event) {
-            if (event.key === 'Enter' && this.value) {
+            if ((event.key === 'Enter' || event.key === ' ') && this.value) {
                 const tag = document.createElement('div');
                 tag.classList.add('inline-flex', 'items-center', 'bg-gray-200', 'rounded-md', 'text-sm', 'font-medium', 'text-gray-700', 'px-2', 'py-1', 'mr-2', 'mb-2');
                 tag.innerHTML = `
