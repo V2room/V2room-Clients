@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Users;
 
-use App\Http\Controllers\Base\Controller;
+use App\Http\Controllers\Controller;
 use App\Models\Users\User;
 use App\Repositories\BaseRepository;
 
