@@ -16,3 +16,5 @@
 - [laravel/breeze](https://github.com/laravel/breeze)
 - [livewire/livewire](https://github.com/livewire/livewire)
 - [meilisearch/meilisearch-php](https://github.com/meilisearch/meilisearch-php)
+- [barryvdh/laravel-debugbar](https://github.com/barryvdh/laravel-debugbar)
+- [Donatello-za/rake-php-plus](https://github.com/Donatello-za/rake-php-plus)
