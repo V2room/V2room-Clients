@@ -50,7 +50,7 @@ class FeedController extends Controller
 
     public function show(Request $request, $id): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
     {
-        $model = $this->repository->showById($id);
+        $model = $this->repository->showById($id, ['user']);
         $this->viewModel->setData($model);
         return $this->buildView('show');
     }
