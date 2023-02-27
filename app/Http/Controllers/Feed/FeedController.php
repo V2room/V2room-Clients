@@ -6,7 +6,7 @@ use App\Enum\Room\RoomStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Feed\FeedRequest;
 use App\Http\VIewModels\Feed\FeedViewModel;
-use App\Models\Rooms\Room;
+use V2room\Models\Rooms\Room;
 use App\Repositories\BasePaginateRepository;
 use Illuminate\Http\Request;
 use Throwable;

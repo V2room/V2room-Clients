@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
-use App\Models\Users\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use V2room\Models\Users\User;
 
 class ProfileTest extends TestCase
 {

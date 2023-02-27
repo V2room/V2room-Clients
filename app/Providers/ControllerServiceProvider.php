@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Http\Controllers\Feed\FeedController;
-use App\Models\Rooms\Room;
+use V2room\Models\Rooms\Room;
 use App\Repositories\BasePaginateRepository;
 use App\Repositories\Feeds\FeedRepository;
 use App\Services\Auth\AuthService;

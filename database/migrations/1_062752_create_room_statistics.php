@@ -28,7 +28,7 @@ return new class extends \LaravelSupports\Libraries\Supports\Databases\Migration
         $table->unsignedInteger('dislike_count')->comment('싫어요 수');
         $table->unsignedInteger('view_count')->comment('조회수');
 
-        $table->foreignIdFor(\App\Models\Rooms\Room::class)
+        $table->foreignIdFor(\V2room\Models\Rooms\Room::class)
               ->unique()
               ->constrained()
               ->onUpdate('cascade')

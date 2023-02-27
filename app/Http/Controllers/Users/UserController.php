@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
-use App\Models\Users\User;
+use V2room\Models\Users\User;
 use App\Repositories\BasePaginateRepository;
 
 class UserController extends Controller

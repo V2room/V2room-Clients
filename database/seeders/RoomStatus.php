@@ -20,7 +20,7 @@ class RoomStatus extends Seeder
 
     private function insert(string $code, string $description): void
     {
-        \App\Models\Rooms\RoomStatus::create([
+        \V2room\Models\Rooms\RoomStatus::create([
             'code' => $code,
             'description' => $description,
         ]);

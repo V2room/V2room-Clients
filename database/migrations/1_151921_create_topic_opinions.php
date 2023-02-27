@@ -24,7 +24,7 @@ return new class extends \LaravelSupports\Libraries\Supports\Databases\Migration
         $table->text('content')->nullable(false)->comment('내용');
         $table->unsignedInteger('agree_count')->nullable(false)->default(0)->comment('동의 수');
 
-        $table->foreignIdFor(\App\Models\Rooms\Topic::class)
+        $table->foreignIdFor(\V2room\Models\Rooms\Topic::class)
               ->constrained()
               ->onUpdate('cascade')
               ->onDelete('cascade');
