@@ -18,6 +18,7 @@ class FeedController extends Controller
     public function __construct(private readonly BasePaginateRepository $repository)
     {
         parent::__construct();
+        $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
     protected function before()
@@ -43,12 +44,10 @@ class FeedController extends Controller
             $data['status'] = RoomStatus::active->name;
             $this->repository->store($data);
             return $this->redirectRouteWithMessage('success', 'feed.index');
-        }, function (Throwable $throwable) {
-            dd($throwable);
         });
     }
 
-    public function show(Request $request, $id): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+    public function show($id): \Illuminate\Contracts\View\Factory|\Illuminate\View\View
     {
         $model = $this->repository->showById($id, ['user']);
         $this->viewModel->setData($model);
