@@ -38,7 +38,9 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
-            "LaravelSupports\\": "app/Library/LaravelSupports/app"
+            "LaravelSupports\\": "app/Library/LaravelSupports/app",
+            "Database\\Factories\\V2room\\Models\\": "app/Library/V2room/Models/database/factories/",
+            "V2room\\Models\\": "app/Library/V2room/Models/src/"
         }
     },
     "autoload-dev": {
