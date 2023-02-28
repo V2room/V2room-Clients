@@ -3,7 +3,7 @@
     <x-text-input {{ $attributes  }} type="text" name="{{ $attributes['id'] }}" />
 </div>
 
-@section('scripts')
+@push('scripts')
     <script>
         const inputTag = document.querySelector('#{{ $attributes['id'] }}');
         const tagsContainer = document.querySelector('#tags-container');
@@ -32,5 +32,5 @@
             }
         });
     </script>
-@endsection
+@endpush
 <x-input-error :messages="$errors->get($attributes['id'])" class="mt-2"/>
