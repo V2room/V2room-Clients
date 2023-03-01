@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout :hasErrors=$hasErrors>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Create Post') }}
@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 rounded-xl overflow-hidden py-2">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg bg-white dark:bg-gray-800">
+            <div class="overflow-hidden shadow-xl sm:rounded-lg dark:bg-gray-800">
                 <div class="p-6">
                     <form method="POST" action="{{ route('feed.store') }}">
                         @csrf
@@ -15,16 +15,17 @@
                             <x-forms.input-label :value="__('Title')" id="title" class="mt-1 block w-full"/>
                         </div>
 
-                        <div class="mb-4">
+                        {{--<div class="mb-4">
                             <x-forms.select-label :value="__('Category')" id="category" @items='[1,2]'/>
+                        </div>--}}
+
+                        <div class="mb-4">
+                            <x-forms.tag-label id="tags" class="mt-1 block w-full"/>
                         </div>
 
                         <div class="mb-4">
-                            <x-forms.tag-label id="tags" class="mt-1 block w-full" />
-                        </div>
-
-                        <div class="mb-4">
-                            <x-forms.textarea-label id="content"/>
+                            <div id="contents"></div>
+                            <x-input-error :messages="$errors->get('contents')" class="mt-2"/>
                         </div>
 
                         <div class="flex items-center justify-end mt-4">
@@ -35,4 +36,26 @@
             </div>
         </div>
     </div>
+
+    @push('scripts')
+        <script>
+            $(document).ready(() => {
+                $('#contents').summernote({
+                    placeholder: '{{ __('Content') }}',
+                    tabsize: 2,
+                    height: 120,
+                    toolbar: [
+                        ['style', ['style']],
+                        ['font', ['bold', 'underline', 'clear', 'white']],
+                        ['color', ['white']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['table', ['table']],
+                        ['insert', ['link', 'picture', 'video']],
+                        ['view', ['fullscreen', 'codeview', 'help']]
+                    ],
+                });
+                $('#contents').summernote('foreColor', 'white');
+            });
+        </script>
+    @endpush
 </x-app-layout>

@@ -1,3 +1,6 @@
+@props([
+    'hasErrors' => false,
+])
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-bs-theme="dark">
 <head data-bs-theme="dark">
@@ -41,26 +44,45 @@
         {{ $slot }}
     </main>
 </div>
-{{--<div class="modal" tabindex="-1" role="dialog" id="myModal">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Modal body text goes here.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Save changes</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
+
+<x-modal name="confirm-user-deletion" :show="$hasErrors ?? false" focusable>
+    <form method="post" action="{{ route('profile.destroy') }}" class="p-6">
+        @csrf
+        @method('delete')
+
+        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+            {{ __('Are you sure you want to delete your account?') }}
+        </h2>
+
+        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+            {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
+        </p>
+
+        <div class="mt-6">
+            <x-input-label for="password" value="{{ __('Password') }}" class="sr-only" />
+
+            <x-text-input
+                    id="password"
+                    name="password"
+                    type="password"
+                    class="mt-1 block w-3/4"
+                    placeholder="{{ __('Password') }}"
+            />
+
+            <x-input-error :messages="$errors->userDeletion->get('password')" class="mt-2" />
         </div>
-    </div>
-</div>--}}
-<x-modal name="myModal" :show='false'/>
+
+        <div class="mt-6 flex justify-end">
+            <x-secondary-button x-on:click="$dispatch('close')">
+                {{ __('Cancel') }}
+            </x-secondary-button>
+
+            <x-danger-button class="ml-3">
+                {{ __('Delete Account') }}
+            </x-danger-button>
+        </div>
+    </form>
+</x-modal>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
