@@ -20,7 +20,7 @@
                         </div>
 
                         <div class="mb-4">
-                            <x-forms.tag-label id="tags" class="mt-1 block w-full"/>
+                            <x-forms.tag-label id="tags" class="mt-1 block w-full" :value="old('tags')"/>
                         </div>
 
                         <div class="mb-4">
@@ -42,7 +42,7 @@
                 $('#{{ $summernoteId }}').summernote({
                     placeholder: '{{ __('Content') }}',
                     tabsize: 2,
-                    height: 120,
+                    height: 512,
                     toolbar: [
                         ['style', ['style']],
                         ['font', ['bold', 'underline', 'clear', 'white']],
