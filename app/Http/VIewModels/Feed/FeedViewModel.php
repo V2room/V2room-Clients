@@ -6,5 +6,5 @@ use App\Http\VIewModels\BaseViewModel;
 
 class FeedViewModel extends BaseViewModel
 {
-    protected array $exceptErrors = ['title2', 'category', 'content'];
+    protected array $exceptErrors = ['title', 'content'];
 }

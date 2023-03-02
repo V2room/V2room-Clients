@@ -11,7 +11,7 @@ class FeedRepository extends BasePaginateRepository
     public function store(array $attribute): Model
     {
         $attribute['user_id'] = $this->authService->getUser()->getKey();
-        $model = parent::store(collect($attribute)->except(['content', 'category'])->toArray());
+        $model = parent::store(collect($attribute)->only(['title', 'status', 'user_id'])->toArray());
         return $model;
     }
 }

@@ -6,10 +6,8 @@ use App\Enum\Room\RoomStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Feed\FeedRequest;
 use App\Http\VIewModels\Feed\FeedViewModel;
-use V2room\Models\Rooms\Room;
 use App\Repositories\BasePaginateRepository;
-use Illuminate\Http\Request;
-use Throwable;
+use V2room\Models\Rooms\Room;
 
 class FeedController extends Controller
 {
@@ -40,7 +38,7 @@ class FeedController extends Controller
     public function store(FeedRequest $request)
     {
         $data = $request->validated();
-        return $this->runTransaction(function () use ($data) {
+        return $this->basicTransaction(function () use ($data) {
             $data['status'] = RoomStatus::active->name;
             $this->repository->store($data);
             return $this->redirectRouteWithMessage('success', 'feed.index');

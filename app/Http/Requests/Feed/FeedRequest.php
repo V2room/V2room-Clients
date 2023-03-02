@@ -11,7 +11,8 @@ class FeedRequest extends BaseFormRequest
         return [
             'title' => 'required|string|max:255',
             'contents' => 'required|string',
-            'category' => 'required|string',
+            'tags' => 'required|array',
+            'files' => 'nullable|file',
         ];
     }
 }
