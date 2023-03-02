@@ -33,6 +33,6 @@
             </div>
         @endforeach
 
-        @link($data->links())
+        {{ $data->links() }}
     </div>
 </x-app-layout>

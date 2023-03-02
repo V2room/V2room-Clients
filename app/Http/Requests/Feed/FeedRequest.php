@@ -10,7 +10,7 @@ class FeedRequest extends BaseFormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'content' => 'required|string',
+            'contents' => 'required|string',
             'category' => 'required|string',
         ];
     }

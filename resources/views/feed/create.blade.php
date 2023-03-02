@@ -1,4 +1,8 @@
-<x-app-layout :hasErrors=$hasErrors>
+@php($summernoteId = 'contents')
+<x-app-layout
+        :hasFilteredErrors=$hasFilteredErrors
+        :getFilteredErrorMessage=$getFilteredErrorMessage
+>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Create Post') }}
@@ -12,20 +16,15 @@
                     <form method="POST" action="{{ route('feed.store') }}">
                         @csrf
                         <div class="mb-4">
-                            <x-forms.input-label :value="__('Title')" id="title" class="mt-1 block w-full"/>
+                            <x-forms.input-label :label="__('Title')" id="title" class="mt-1 block w-full"/>
                         </div>
-
-                        {{--<div class="mb-4">
-                            <x-forms.select-label :value="__('Category')" id="category" @items='[1,2]'/>
-                        </div>--}}
 
                         <div class="mb-4">
                             <x-forms.tag-label id="tags" class="mt-1 block w-full"/>
                         </div>
 
                         <div class="mb-4">
-                            <div id="contents"></div>
-                            <x-input-error :messages="$errors->get('contents')" class="mt-2"/>
+                            <x-forms.textarea-label :id="$summernoteId" :label="__('Content')" :value="old($summernoteId)" />
                         </div>
 
                         <div class="flex items-center justify-end mt-4">
@@ -40,7 +39,7 @@
     @push('scripts')
         <script>
             $(document).ready(() => {
-                $('#contents').summernote({
+                $('#{{ $summernoteId }}').summernote({
                     placeholder: '{{ __('Content') }}',
                     tabsize: 2,
                     height: 120,
@@ -54,7 +53,7 @@
                         ['view', ['fullscreen', 'codeview', 'help']]
                     ],
                 });
-                $('#contents').summernote('foreColor', 'white');
+                $('#{{ $summernoteId }}').summernote('foreColor', 'white');
             });
         </script>
     @endpush
