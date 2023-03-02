@@ -2,10 +2,12 @@
 
 namespace App\Http\VIewModels;
 
+use Illuminate\Support\Collection;
+
 class BaseViewModel extends \LaravelSupports\ViewModels\BaseViewModel
 {
-    protected array $exceptErrors = ['title'];
-    protected array $catchErrors = ['title', 'category'];
+    protected array $exceptErrors = [];
+    protected array $catchErrors = [];
     protected string $messageBack = 'default';
 
     /**
@@ -22,7 +24,6 @@ class BaseViewModel extends \LaravelSupports\ViewModels\BaseViewModel
     public function hasFilteredErrors(): bool
     {
         if ($this->hasErrors()) {
-            dump($this->getFilteredKeys());
             return $this->getFilteredKeys()->count() > 0;
         } else {
             return false;
@@ -41,6 +42,21 @@ class BaseViewModel extends \LaravelSupports\ViewModels\BaseViewModel
     }
 
     /**
+     * @return string
+     * @author  WilsonParker
+     * @added   2023/03/02
+     * @updated 2023/03/02
+     */
+    public function getFilteredErrorMessage(): string
+    {
+        if ($this->hasFilteredErrors()) {
+            $errors = $this->getErrors();
+            return $errors->getBag($this->messageBack)->getMessages()[$this->getFilteredKeys()->first()][0];
+        }
+        return '';
+    }
+
+    /**
      * @return \Illuminate\Support\Collection
      * @author  WilsonParker
      * @added   2023/03/01
@@ -51,8 +67,12 @@ class BaseViewModel extends \LaravelSupports\ViewModels\BaseViewModel
         if ($this->hasErrors()) {
             $errors = $this->getErrors();
             $messages = $errors->getBag($this->messageBack)->getMessages();
-            $keys = array_keys($messages);
-            return $keys->forget($this->exceptErrors)->intersect($this->catchErrors);
+            $keys = collect($messages)->keys();
+            return $keys->exclude($this->exceptErrors)->when(sizeof($this->catchErrors) > 0, function (
+                Collection $collection
+            ) {
+                return $collection->intersect($this->catchErrors);
+            });
         }
         return collect();
     }
