@@ -23,7 +23,7 @@ return new class extends \LaravelSupports\Libraries\Supports\Databases\Migration
         $table->id();
         $table->text('content')->nullable(false)->comment('내용');
 
-        $table->foreignIdFor(\App\Models\Rooms\TopicOpinion::class)
+        $table->foreignIdFor(\V2room\Models\Rooms\TopicOpinion::class)
               ->constrained()
               ->onUpdate('cascade')
               ->onDelete('cascade');

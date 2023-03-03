@@ -1,10 +1,12 @@
-@props(['value', 'items'])
+@props([
+    'label' => null,
+    'value' => null,
+    'items' => null,
+    'withLabel' => true,
+])
 
-<label {{ $attributes->merge([
-    'class' => 'block font-medium text-sm text-gray-700 dark:text-gray-300',
-    'for' => $attributes['id'],
-])->except(['id', 'name', '@items']) }}
->
-    {{ $value ?? $slot }}
-</label>
+@if($withLabel)
+    <x-input-label for="{{ $attributes['id'] }}" :value="$label"/>
+@endif
+
 <x-forms.select {{ $attributes }}/>

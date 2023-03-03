@@ -6,7 +6,9 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "blade-ui-kit/blade-heroicons": "^2.1",
         "darkaonline/l5-swagger": "^8.5",
+        "donatello-za/rake-php-plus": "^1.0",
         "guzzlehttp/guzzle": "^7.5",
         "http-interop/http-factory-guzzle": "^1.2",
         "inertiajs/inertia-laravel": "^0.6.3",
@@ -21,6 +23,7 @@
         "tightenco/ziggy": "^1.0"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.8",
         "fakerphp/faker": "^1.9.1",
         "laravel/breeze": "^1.19",
         "laravel/pint": "^1.0",
@@ -35,7 +38,9 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
-            "LaravelSupports\\": "app/Library/LaravelSupports/app"
+            "LaravelSupports\\": "app/Library/LaravelSupports/app",
+            "Database\\Factories\\V2room\\Models\\": "app/Library/V2room/Models/database/factories/",
+            "V2room\\Models\\": "app/Library/V2room/Models/src/"
         }
     },
     "autoload-dev": {

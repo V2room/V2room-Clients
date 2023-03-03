@@ -26,7 +26,7 @@ return new class extends \LaravelSupports\Libraries\Supports\Databases\Migration
         $table->string('age', 3)->nullable(false)->comment('나이 (시스템으로 걔산)');
         $table->enum('gender', ['female', 'male'])->nullable(false)->comment('성별');
 
-        $table->foreignIdFor(\App\Models\Users\User::class)
+        $table->foreignIdFor(\V2room\Models\Users\User::class)
               ->constrained()
               ->onUpdate('cascade')
               ->onDelete('cascade');

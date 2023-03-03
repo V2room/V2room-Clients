@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
-use App\Models\Users\User;
-use App\Repositories\BaseRepository;
+use V2room\Models\Users\User;
+use App\Repositories\BasePaginateRepository;
 
 class UserController extends Controller
 {
-    private BaseRepository $repository;
+    private BasePaginateRepository $repository;
 
     public function show(User $model)
     {

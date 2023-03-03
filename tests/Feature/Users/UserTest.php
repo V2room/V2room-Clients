@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Users;
 
-use App\Models\Users\User;
+use V2room\Models\Users\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 

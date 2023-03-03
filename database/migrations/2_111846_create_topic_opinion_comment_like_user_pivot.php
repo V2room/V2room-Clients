@@ -22,15 +22,15 @@ return new class extends \LaravelSupports\Libraries\Supports\Databases\Migration
     {
         $table->id();
 
-        $this->foreignCode($table, 'status', \App\Models\Common\LikeStatus::class)
+        $this->foreignCode($table, 'status', \V2room\Models\Common\LikeStatus::class)
              ->onUpdate('cascade')
              ->onDelete('cascade');
 
-        $this->foreignIdForWithName($table, \App\Models\Rooms\TopicOpinionComment::class, 'comment')
+        $this->foreignIdForWithName($table, \V2room\Models\Rooms\TopicOpinionComment::class, 'comment')
              ->onUpdate('cascade')
              ->onDelete('cascade');
 
-        $this->foreignIdForWithName($table, \App\Models\Users\User::class, 'user')
+        $this->foreignIdForWithName($table, \V2room\Models\Users\User::class, 'user')
              ->onUpdate('cascade')
              ->onDelete('cascade');
 

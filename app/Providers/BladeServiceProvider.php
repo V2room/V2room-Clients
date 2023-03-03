@@ -27,5 +27,9 @@ class BladeServiceProvider extends ServiceProvider
         Blade::if('isblank', function ($expression) {
             return $expression == '';
         });
+
+        Blade::directive('datetime', function ($expression) {
+            return "<?php echo ($expression)->format('Y:m:d H:i:s'); ?>";
+        });
     }
 }

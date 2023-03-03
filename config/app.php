@@ -190,14 +190,21 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
+        App\Providers\ControllerServiceProvider::class,
         App\Providers\BladeServiceProvider::class,
+        App\Providers\ControllerServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Library\LaravelSupports\app\Database\Migrations\MigrationServiceProvider::class,
         \App\Providers\RouteServiceProvider::class,
         L5Swagger\L5SwaggerServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
+
+        /*
+         * Custom Service Providers...
+         */
+        LaravelSupports\Database\Migrations\MigrationServiceProvider::class,
+        \LaravelSupports\Providers\CollectionServiceProvider::class,
     ],
 
     /*
@@ -213,6 +220,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
     ])->toArray(),
 
 ];

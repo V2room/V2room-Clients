@@ -16,14 +16,14 @@ return new class extends \LaravelSupports\Libraries\Supports\Databases\Migration
     {
         $table->id();
         $table->string('title', 512)->nullable(false)->comment('주제');
-        $table->timestamp('close_reserved_at')->comment('close 예약 날짜');
-        $table->timestamp('closed_at')->comment('close 날짜');
+        $table->timestamp('close_reserved_at')->nullable(true)->comment('close 예약 날짜');
+        $table->timestamp('closed_at')->nullable(true)->comment('close 날짜');
 
-        $this->foreignCode($table, 'status', \App\Models\Rooms\RoomStatus::class)
+        $this->foreignCode($table, 'status', \V2room\Models\Rooms\RoomStatus::class)
              ->onUpdate('cascade')
              ->onDelete('cascade');
 
-        $table->foreignIdFor(\App\Models\Users\User::class)
+        $table->foreignIdFor(\V2room\Models\Users\User::class)
               ->constrained()
               ->onUpdate('cascade')
               ->onDelete('cascade');

@@ -22,16 +22,16 @@ return new class extends \LaravelSupports\Libraries\Supports\Databases\Migration
     {
         $table->id();
 
-        $this->foreignCode($table, 'status', \App\Models\Common\LikeStatus::class)
+        $this->foreignCode($table, 'status', \V2room\Models\Common\LikeStatus::class)
              ->onUpdate('cascade')
              ->onDelete('cascade');
 
-        $table->foreignIdFor(\App\Models\Rooms\Room::class)
+        $table->foreignIdFor(\V2room\Models\Rooms\Room::class)
               ->constrained()
               ->onUpdate('cascade')
               ->onDelete('cascade');
 
-        $table->foreignIdFor(\App\Models\Users\User::class)
+        $table->foreignIdFor(\V2room\Models\Users\User::class)
               ->constrained()
               ->onUpdate('cascade')
               ->onDelete('cascade');

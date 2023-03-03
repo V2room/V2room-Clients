@@ -22,12 +22,12 @@ return new class extends \LaravelSupports\Libraries\Supports\Databases\Migration
     {
         $table->id();
 
-        $table->foreignIdFor(\App\Models\Rooms\TopicOpinion::class)
+        $table->foreignIdFor(\V2room\Models\Rooms\TopicOpinion::class)
               ->constrained()
               ->onUpdate('cascade')
               ->onDelete('cascade');
 
-        $table->foreignIdFor(\App\Models\Users\User::class)
+        $table->foreignIdFor(\V2room\Models\Users\User::class)
               ->constrained()
               ->onUpdate('cascade')
               ->onDelete('cascade');
