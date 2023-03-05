@@ -18,6 +18,12 @@ return new class extends \LaravelSupports\Libraries\Supports\Databases\Migration
               ->constrained()
               ->onUpdate('cascade')
               ->onDelete('cascade');
+        $table->foreignIdFor(\V2room\Models\Users\User::class)
+              ->constrained()
+              ->onUpdate('cascade')
+              ->onDelete('cascade');
+
+        $table->text('contents')->nullable(false)->comment('내용');
     }
 
 };
