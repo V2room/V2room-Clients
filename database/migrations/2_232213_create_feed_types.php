@@ -14,7 +14,7 @@ return new class extends \LaravelSupports\Libraries\Supports\Databases\Migration
      */
      protected function defaultUpTemplate(Blueprint $table): void
      {
-         $table->string('code', 32)->nullable(false)->comment('코드');
+         $table->string('code', 32)->primary()->nullable(false)->comment('코드');
          $table->string('description', 256)->nullable(false)->comment('설명');
      }
 
