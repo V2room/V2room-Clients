@@ -21,4 +21,9 @@ class FMKorea extends Caller
     {
         return '/' . $id;
     }
+
+    protected function getListItemSelector(): string
+    {
+        return '.li_best2_pop0 h3[class="title"] a';
+    }
 }

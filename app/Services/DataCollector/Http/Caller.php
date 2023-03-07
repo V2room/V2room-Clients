@@ -3,6 +3,8 @@
 namespace App\Services\DataCollector\Http;
 
 use GuzzleHttp\Client;
+use JetBrains\PhpStorm\NoReturn;
+use PHPHtmlParser\Dom;
 
 abstract class Caller
 {
@@ -18,9 +20,25 @@ abstract class Caller
         ]);
     }
 
+    #[NoReturn]
+    public function call(): void
+    {
+        $response = $this->client->get($this->getListUri());
+        $dom = new Dom();
+        $dom->loadStr($response->getBody()->getContents());
+        $tags = $dom->find($this->getListItemSelector());
+        foreach ($tags as $tag) {
+            dump($tag->getAttribute('href'));
+            dump($tag->text);
+        }
+        exit;
+    }
+
     abstract protected function getBaseUri(): string;
 
     abstract protected function getListUri(): string;
 
     abstract protected function getDetailUri(string $id): string;
+
+    abstract protected function getListItemSelector();
 }
