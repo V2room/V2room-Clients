@@ -10,6 +10,13 @@ class DataCollector
      * @added   2023/03/06
      * @updated 2023/03/06
      */
-    public function __construct(array $platforms) {}
+    public function __construct(protected array $platforms) {}
+
+    public function call(): void
+    {
+        foreach ($this->platforms as $platform) {
+            $platform->call();
+        }
+    }
 
 }

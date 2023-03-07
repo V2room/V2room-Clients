@@ -19,6 +19,7 @@
         "laravel/ui": "^4.2",
         "livewire/livewire": "^2.12",
         "meilisearch/meilisearch-php": "^1.0",
+        "paquettg/php-html-parser": "^2.2",
         "spatie/laravel-view-models": "^1.5",
         "tightenco/ziggy": "^1.0"
     },
