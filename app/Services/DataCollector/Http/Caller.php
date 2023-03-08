@@ -9,6 +9,7 @@ use PHPHtmlParser\Dom;
 abstract class Caller
 {
     protected Client $client;
+    protected int $page = 1;
 
     public function __construct()
     {
@@ -20,6 +21,17 @@ abstract class Caller
         ]);
     }
 
+    /**
+     * @return void
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \PHPHtmlParser\Exceptions\ChildNotFoundException
+     * @throws \PHPHtmlParser\Exceptions\CircularException
+     * @throws \PHPHtmlParser\Exceptions\NotLoadedException
+     * @throws \PHPHtmlParser\Exceptions\StrictException
+     * @author  WilsonParker
+     * @added   2023/03/08
+     * @updated 2023/03/08
+     */
     #[NoReturn]
     public function call(): void
     {
@@ -34,11 +46,43 @@ abstract class Caller
         exit;
     }
 
+    /**
+     * @return void
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \PHPHtmlParser\Exceptions\ChildNotFoundException
+     * @throws \PHPHtmlParser\Exceptions\CircularException
+     * @throws \PHPHtmlParser\Exceptions\NotLoadedException
+     * @throws \PHPHtmlParser\Exceptions\StrictException
+     * @author  WilsonParker
+     * @added   2023/03/08
+     * @updated 2023/03/08
+     */
+    #[NoReturn]
+    public function continue(): void
+    {
+        $this->addPage();
+        $this->call();
+    }
+
     abstract protected function getBaseUri(): string;
 
     abstract protected function getListUri(): string;
 
     abstract protected function getDetailUri(string $id): string;
 
+    abstract protected function getPageParamName(): string;
+
+    abstract protected function getCategoryParamName(): string;
+
     abstract protected function getListItemSelector();
+
+    public function addPage(): void
+    {
+        $this->setPage($this->page + 1);
+    }
+
+    public function setPage(int $page): void
+    {
+        $this->page = $page;
+    }
 }
