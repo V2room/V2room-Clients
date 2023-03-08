@@ -8,8 +8,9 @@ use PHPHtmlParser\Dom\HtmlNode;
 class SelectNodeCallback implements SelectNodeContract
 {
 
-    public function select(HtmlNode $node): bool
+    public function select(string $title, string $uri): bool
     {
-        dd($node);
+        dump($title, $uri);
+        return false;
     }
 }

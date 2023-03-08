@@ -32,4 +32,9 @@ class FMKorea extends Caller
     {
         return 'mid';
     }
+
+    protected function getType(): string
+    {
+        return 'fm_korea';
+    }
 }

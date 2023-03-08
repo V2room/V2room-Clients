@@ -19,7 +19,7 @@ class DataCollectorTest extends TestCase
      */
     public function test_call()
     {
-        $dataCollector = app(\App\Services\DataCollector\DataCollector::class);
+        $dataCollector = app(\App\Services\DataCollector\DataCollectorService::class);
         $dataCollector->call();
     }
 }

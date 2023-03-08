@@ -2,7 +2,7 @@
 
 namespace App\Services\DataCollector;
 
-class DataCollector
+class DataCollectorService
 {
     /**
      * @param array<\App\Services\DataCollector\Http\Caller> $platforms
@@ -12,6 +12,13 @@ class DataCollector
      */
     public function __construct(protected array $platforms) {}
 
+    /**
+     * @throws \PHPHtmlParser\Exceptions\ChildNotFoundException
+     * @throws \PHPHtmlParser\Exceptions\NotLoadedException
+     * @throws \PHPHtmlParser\Exceptions\CircularException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \PHPHtmlParser\Exceptions\StrictException
+     */
     public function call(): void
     {
         foreach ($this->platforms as $platform) {

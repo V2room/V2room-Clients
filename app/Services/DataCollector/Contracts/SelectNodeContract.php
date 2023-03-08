@@ -6,5 +6,5 @@ use PHPHtmlParser\Dom\HtmlNode;
 
 interface SelectNodeContract
 {
-    public function select(HtmlNode $node): bool;
+    public function select(string $title, string $uri): bool;
 }

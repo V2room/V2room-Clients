@@ -23,8 +23,8 @@ class CollectorProvider extends ServiceProvider
             return new \App\Services\DataCollector\Platform\FMKorea($app->make(SelectNodeContract::class));
         });
 
-        $this->app->bind(DataCollector::class, function ($app) {
-            return new DataCollector([
+        $this->app->bind(DataCollectorService::class, function ($app) {
+            return new DataCollectorService([
                 $app->make(\App\Services\DataCollector\Platform\FMKorea::class),
 //                $app->make(\App\Services\DataCollector\Platform\Naver::class),
 //                $app->make(\App\Services\DataCollector\Platform\Daum::class),

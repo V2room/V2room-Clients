@@ -4,6 +4,7 @@ namespace App\Services\DataCollector\Http;
 
 use App\Services\DataCollector\Contracts\SelectNodeContract;
 use GuzzleHttp\Client;
+use Illuminate\Support\Str;
 use JetBrains\PhpStorm\NoReturn;
 use PHPHtmlParser\Dom;
 
@@ -41,7 +42,7 @@ abstract class Caller
         $dom->loadStr($response->getBody()->getContents());
         $tags = $dom->find($this->getListItemSelector());
         foreach ($tags as $tag) {
-            if(!$this->callback->select($tag)) {
+            if (!$this->callback->select($this->extractTitle($tag), $this->extractDetailUri($tag))) {
                 break;
             }
         }
@@ -73,11 +74,24 @@ abstract class Caller
 
     abstract protected function getCategoryParamName(): string;
 
-    abstract protected function getListItemSelector();
+    abstract protected function getListItemSelector(): string;
+
+    abstract protected function getType(): string;
 
     protected function getPageParamName(): string
     {
         return 'page';
+    }
+
+    protected function extractTitle(Dom\HtmlNode $node): string
+    {
+        $regex = "^(&nbsp)^";
+        return Str::squish(preg_replace($regex, '', $node->text()));
+    }
+
+    protected function extractDetailUri(Dom\HtmlNode $tag): string
+    {
+        return $tag->getAttribute('href');
     }
 
     public function addPage(): void
