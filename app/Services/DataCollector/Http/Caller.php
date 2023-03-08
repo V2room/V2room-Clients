@@ -2,6 +2,7 @@
 
 namespace App\Services\DataCollector\Http;
 
+use App\Services\DataCollector\Contracts\SelectNodeContract;
 use GuzzleHttp\Client;
 use JetBrains\PhpStorm\NoReturn;
 use PHPHtmlParser\Dom;
@@ -11,7 +12,7 @@ abstract class Caller
     protected Client $client;
     protected int $page = 1;
 
-    public function __construct()
+    public function __construct(protected SelectNodeContract $callback)
     {
         $this->client = new Client([
             // Base URI is used with relative requests
@@ -40,11 +41,10 @@ abstract class Caller
         $dom->loadStr($response->getBody()->getContents());
         $tags = $dom->find($this->getListItemSelector());
         foreach ($tags as $tag) {
-            dd($tag);
-            dump($tag->getAttribute('href'));
-            dump($tag->text);
+            if(!$this->callback->select($tag)) {
+                break;
+            }
         }
-        exit;
     }
 
     /**

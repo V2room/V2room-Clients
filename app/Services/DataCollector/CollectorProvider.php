@@ -2,6 +2,7 @@
 
 namespace App\Services\DataCollector;
 
+use App\Services\DataCollector\Contracts\SelectNodeContract;
 use Illuminate\Support\ServiceProvider;
 
 class CollectorProvider extends ServiceProvider
@@ -14,6 +15,14 @@ class CollectorProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->singleton(SelectNodeContract::class, function ($app) {
+            return new SelectNodeCallback();
+        });
+
+        $this->app->singleton(\App\Services\DataCollector\Platform\FMKorea::class, function ($app) {
+            return new \App\Services\DataCollector\Platform\FMKorea($app->make(SelectNodeContract::class));
+        });
+
         $this->app->bind(DataCollector::class, function ($app) {
             return new DataCollector([
                 $app->make(\App\Services\DataCollector\Platform\FMKorea::class),
