@@ -40,6 +40,7 @@ abstract class Caller
         $dom->loadStr($response->getBody()->getContents());
         $tags = $dom->find($this->getListItemSelector());
         foreach ($tags as $tag) {
+            dd($tag);
             dump($tag->getAttribute('href'));
             dump($tag->text);
         }
@@ -70,11 +71,14 @@ abstract class Caller
 
     abstract protected function getDetailUri(string $id): string;
 
-    abstract protected function getPageParamName(): string;
-
     abstract protected function getCategoryParamName(): string;
 
     abstract protected function getListItemSelector();
+
+    protected function getPageParamName(): string
+    {
+        return 'page';
+    }
 
     public function addPage(): void
     {

@@ -26,4 +26,10 @@ class FMKorea extends Caller
     {
         return '.li_best2_pop0 h3[class="title"] a';
     }
+
+
+    protected function getCategoryParamName(): string
+    {
+        return 'mid';
+    }
 }
