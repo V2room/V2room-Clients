@@ -24,9 +24,29 @@ class FMKorea extends Caller
 
     protected function getListItemSelector(): string
     {
-        return '.li_best2_pop0 h3[class="title"] a';
+        return '.li_best2_pop0';
     }
 
+    protected function getTitleSelector(): string
+    {
+        return 'h3[class="title"] a';
+    }
+
+    protected function getCategorySelector(): string
+    {
+        return 'span[class="category"] a';
+    }
+
+    protected function getWriterSelector(): string
+    {
+        return 'span[class="author"]';
+    }
+
+    protected function getDetailSelector(): string
+    {
+        // TODO: Implement getDetailSelector() method.
+        return 'a[class=" hotdeal_var8"]';
+    }
 
     protected function getCategoryParamName(): string
     {
@@ -37,4 +57,5 @@ class FMKorea extends Caller
     {
         return 'fm_korea';
     }
+
 }

@@ -13,6 +13,11 @@ abstract class Caller
     protected Client $client;
     protected int $page = 1;
 
+    protected string $regTitle = '^(&nbsp)^';
+    protected string $regCategory = '^(&nbsp)^';
+    protected string $regWriter = '^(&nbsp)^';
+    protected string $regDetail = '^(&nbsp)^';
+
     public function __construct(protected SelectNodeContract $callback)
     {
         $this->client = new Client([
@@ -42,7 +47,7 @@ abstract class Caller
         $dom->loadStr($response->getBody()->getContents());
         $tags = $dom->find($this->getListItemSelector());
         foreach ($tags as $tag) {
-            if (!$this->callback->select($this->extractTitle($tag), $this->extractDetailUri($tag))) {
+            if (!$this->callback->select($this->extractTitle($tag), $this->extractCategory($tag), $this->extractWriter($tag), $this->extractDetailUri($tag))) {
                 break;
             }
         }
@@ -76,6 +81,14 @@ abstract class Caller
 
     abstract protected function getListItemSelector(): string;
 
+    abstract protected function getTitleSelector(): string;
+
+    abstract protected function getCategorySelector(): string;
+
+    abstract protected function getWriterSelector(): string;
+
+    abstract protected function getDetailSelector(): string;
+
     abstract protected function getType(): string;
 
     protected function getPageParamName(): string
@@ -85,13 +98,31 @@ abstract class Caller
 
     protected function extractTitle(Dom\HtmlNode $node): string
     {
-        $regex = "^(&nbsp)^";
-        return Str::squish(preg_replace($regex, '', $node->text()));
+        $node = $node->find($this->getTitleSelector());
+        return $this->replaceString($this->regTitle, '', $node->text());
     }
 
-    protected function extractDetailUri(Dom\HtmlNode $tag): string
+    protected function extractCategory(Dom\HtmlNode $node): string
     {
-        return $tag->getAttribute('href');
+        $node = $node->find($this->getCategorySelector());
+        return $this->replaceString($this->regCategory, '', $node->text());
+    }
+
+    protected function extractWriter(Dom\HtmlNode $node): string
+    {
+        $node = $node->find($this->getWriterSelector());
+        return $this->replaceString($this->regWriter, '', $node->text());
+    }
+
+    protected function extractDetailUri(Dom\HtmlNode $node): string
+    {
+        $node = $node->find($this->getDetailSelector());
+        return $this->replaceString($this->regDetail, '', $node->getAttribute('href'));
+    }
+
+    protected function replaceString(string $regex, string $replacement, string $subject): string
+    {
+        return Str::squish(preg_replace($regex, $replacement, $subject));
     }
 
     public function addPage(): void
