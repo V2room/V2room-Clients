@@ -11,4 +11,5 @@ class AuthService extends BaseService
     {
         return Auth::user();
     }
+
 }

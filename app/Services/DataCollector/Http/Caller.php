@@ -15,8 +15,8 @@ abstract class Caller
 
     protected string $regTitle = '^(&nbsp)^';
     protected string $regCategory = '^(&nbsp)^';
-    protected string $regWriter = '^(&nbsp)^';
-    protected string $regDetail = '^(&nbsp)^';
+    protected string $regWriter = '^(/)^';
+    protected string $regDetail = '^(&®nbsp)^';
 
     public function __construct(protected SelectNodeContract $callback)
     {
@@ -42,14 +42,19 @@ abstract class Caller
     #[NoReturn]
     public function call(): void
     {
-        $response = $this->client->get($this->getListUri());
+        $response = $this->client->get($this->buildListUri());
         $dom = new Dom();
         $dom->loadStr($response->getBody()->getContents());
         $tags = $dom->find($this->getListItemSelector());
+        $continue = true;
         foreach ($tags as $tag) {
-            if (!$this->callback->select($this->extractTitle($tag), $this->extractCategory($tag), $this->extractWriter($tag), $this->extractDetailUri($tag))) {
+            $continue = $this->callback->select($this->extractTitle($tag), $this->extractCategory($tag), $this->extractWriter($tag), $this->extractDetailUri($tag));
+            if (!$continue) {
                 break;
             }
+        }
+        if ($continue) {
+            $this->continue();
         }
     }
 
@@ -71,25 +76,10 @@ abstract class Caller
         $this->call();
     }
 
-    abstract protected function getBaseUri(): string;
-
-    abstract protected function getListUri(): string;
-
-    abstract protected function getDetailUri(string $id): string;
-
-    abstract protected function getCategoryParamName(): string;
-
-    abstract protected function getListItemSelector(): string;
-
-    abstract protected function getTitleSelector(): string;
-
-    abstract protected function getCategorySelector(): string;
-
-    abstract protected function getWriterSelector(): string;
-
-    abstract protected function getDetailSelector(): string;
-
-    abstract protected function getType(): string;
+    protected function buildListUri(): string
+    {
+        return $this->getListUri() . '?' . $this->getCategoryParamName() . '=' . $this->getType() . '&' . $this->getPageParamName() . '=' . $this->page;
+    }
 
     protected function getPageParamName(): string
     {
@@ -134,4 +124,25 @@ abstract class Caller
     {
         $this->page = $page;
     }
+
+    abstract protected function getBaseUri(): string;
+
+    abstract protected function getListUri(): string;
+
+    abstract protected function getDetailUri(string $id): string;
+
+    abstract protected function getCategoryParamName(): string;
+
+    abstract protected function getListItemSelector(): string;
+
+    abstract protected function getTitleSelector(): string;
+
+    abstract protected function getCategorySelector(): string;
+
+    abstract protected function getWriterSelector(): string;
+
+    abstract protected function getDetailSelector(): string;
+
+    abstract protected function getType(): string;
+
 }
