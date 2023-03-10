@@ -3,10 +3,12 @@
 namespace App\Repositories\Feeds;
 
 use App\Repositories\BasePaginateRepository;
+use App\Services\Auth\AuthService;
 use Illuminate\Database\Eloquent\Model;
 
 class FeedRepository extends BasePaginateRepository
 {
+    public function __construct(protected Model $model, protected AuthService $authService) {}
 
     public function store(array $attribute): Model
     {
