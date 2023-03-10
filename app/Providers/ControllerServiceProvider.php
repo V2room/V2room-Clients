@@ -3,11 +3,15 @@
 namespace App\Providers;
 
 use App\Http\Controllers\Feed\FeedController;
-use V2room\Models\Rooms\Room;
 use App\Repositories\BasePaginateRepository;
 use App\Repositories\Feeds\FeedRepository;
+use App\Repositories\Feeds\FeedTypeRepository;
+use App\Repositories\Users\UserRepository;
 use App\Services\Auth\AuthService;
 use Illuminate\Support\ServiceProvider;
+use V2room\Models\Feeds\Feed;
+use V2room\Models\Feeds\FeedType;
+use V2room\Models\Users\User;
 
 class ControllerServiceProvider extends ServiceProvider
 {
@@ -35,8 +39,14 @@ class ControllerServiceProvider extends ServiceProvider
 
     private function buildRepository()
     {
+        $this->app->singleton(UserRepository::class, function ($app) {
+            return new UserRepository(new User());
+        });
+        $this->app->singleton(FeedTypeRepository::class, function ($app) {
+            return new FeedTypeRepository(new FeedType());
+        });
         $this->app->singleton(FeedRepository::class, function ($app) {
-            return new FeedRepository(new Room(), $app->make(AuthService::class));
+            return new FeedRepository(new Feed(), $app->make(AuthService::class));
         });
     }
 
