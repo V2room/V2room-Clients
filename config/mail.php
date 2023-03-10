@@ -115,4 +115,5 @@ return [
         ],
     ],
 
+    'cs_mail' => env('CS_MAIL', ''),
 ];
