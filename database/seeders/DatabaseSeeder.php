@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            RoomStatus::class
+            RoomStatus::class,
+            User::class,
         ]);
     }
 }

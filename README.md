@@ -18,6 +18,7 @@
 - [meilisearch/meilisearch-php](https://github.com/meilisearch/meilisearch-php)
 - [barryvdh/laravel-debugbar](https://github.com/barryvdh/laravel-debugbar)
 - [Donatello-za/rake-php-plus](https://github.com/Donatello-za/rake-php-plus)
+- [paquettg/php-html-parser](https://github.com/paquettg/php-html-parser)
 
 <!-- 
 - [wire-elements/modal](https://github.com/wire-elements/modal)
