@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Services\CommunityCollector;
+namespace App\Services\DataCollector;
 
 use App\Repositories\Feeds\FeedRepository;
 use App\Repositories\Users\UserRepository;
-use App\Services\CommunityCollector\Contracts\SelectNodeContract;
+use App\Services\DataCollector\Contracts\SelectNodeContract;
 
-class SelectNodeCallback implements SelectNodeContract
+class CommunitySelectNodeCallback implements SelectNodeContract
 {
     public function __construct(
         private FeedRepository $feedRepository,

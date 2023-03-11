@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\CommunityCollector\Http;
+namespace App\Services\DataCollector\Http;
 
-use App\Services\CommunityCollector\Contracts\SelectNodeContract;
+use App\Services\DataCollector\Contracts\SelectNodeContract;
 use GuzzleHttp\Client;
 use Illuminate\Support\Str;
 use JetBrains\PhpStorm\NoReturn;

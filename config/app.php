@@ -203,7 +203,7 @@ return [
         /*
          * Custom Service Providers...
          */
-        \App\Services\CommunityCollector\CollectorProvider::class,
+        \App\Services\DataCollector\CollectorProvider::class,
         LaravelSupports\Database\Migrations\MigrationServiceProvider::class,
         \LaravelSupports\Providers\CollectionServiceProvider::class,
     ],

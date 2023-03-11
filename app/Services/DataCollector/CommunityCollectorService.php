@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Services\CommunityCollector;
+namespace App\Services\DataCollector;
 
-class DataCollectorService
+class CommunityCollectorService
 {
     /**
-     * @param array<\App\Services\CommunityCollector\Http\Caller> $platforms
+     * @param array<\App\Services\DataCollector\Http\Caller> $platforms
      * @author  WilsonParker
      * @added   2023/03/06
      * @updated 2023/03/06
