@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\DataCollector\Platform;
+namespace App\Services\DataCollector\Platform\FMKorea;
 
 use App\Services\DataCollector\Http\Caller;
 
@@ -29,7 +29,8 @@ class FMKorea extends Caller
 
     protected function getTitleSelector(): string
     {
-        return 'h3[class="title"] a';
+        return '.title a';
+        // return 'h3[class="title"] a';
     }
 
     protected function getCategorySelector(): string
@@ -51,6 +52,11 @@ class FMKorea extends Caller
     protected function getCategoryParamName(): string
     {
         return 'mid';
+    }
+
+    protected function getCategory(): string
+    {
+        return '';
     }
 
     protected function getType(): string

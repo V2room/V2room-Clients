@@ -2,6 +2,8 @@
 
 namespace App\Services\DataCollector;
 
+use App\Repositories\Feeds\FeedRepository;
+use App\Repositories\Users\UserRepository;
 use App\Services\DataCollector\Contracts\SelectNodeContract;
 
 class SelectNodeCallback implements SelectNodeContract
@@ -18,7 +20,7 @@ class SelectNodeCallback implements SelectNodeContract
             'title' => $title,
             'user_id' => $user->getKey(),
         ]);
-        dump($title, $category, $writer, $uri);
+        dd($title, $category, $writer, $uri);
         return true;
     }
 }

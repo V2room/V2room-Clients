@@ -78,7 +78,11 @@ abstract class Caller
 
     protected function buildListUri(): string
     {
-        return $this->getListUri() . '?' . $this->getCategoryParamName() . '=' . $this->getType() . '&' . $this->getPageParamName() . '=' . $this->page;
+        $params = [];
+        $baseUri = parse_url($this->getListUri())['path'];
+        parse_str(parse_url($this->getListUri(), PHP_URL_QUERY), $params);
+        $params[$this->getPageParamName()] = $this->page;
+        return $baseUri . "?" . http_build_query($params);
     }
 
     protected function getPageParamName(): string
@@ -132,6 +136,8 @@ abstract class Caller
     abstract protected function getDetailUri(string $id): string;
 
     abstract protected function getCategoryParamName(): string;
+
+    abstract protected function getCategory(): string;
 
     abstract protected function getListItemSelector(): string;
 

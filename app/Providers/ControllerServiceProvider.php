@@ -46,7 +46,7 @@ class ControllerServiceProvider extends ServiceProvider
             return new FeedTypeRepository(new FeedType());
         });
         $this->app->singleton(FeedRepository::class, function ($app) {
-            return new FeedRepository(new Feed(), $app->make(AuthService::class));
+            return new FeedRepository(new Feed(), $app->make(FeedTypeRepository::class));
         });
     }
 
