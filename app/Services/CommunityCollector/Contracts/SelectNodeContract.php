@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\DataCollector\Contracts;
+namespace App\Services\CommunityCollector\Contracts;
 
 use PHPHtmlParser\Dom\HtmlNode;
 

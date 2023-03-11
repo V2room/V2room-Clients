@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\DataCollector\Platform\FMKorea;
+namespace App\Services\CommunityCollector\Platform\FMKorea;
 
-use App\Services\DataCollector\Http\Caller;
+use App\Services\CommunityCollector\Http\Caller;
 
 class FMKorea extends Caller
 {

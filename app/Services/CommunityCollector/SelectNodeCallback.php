@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Services\DataCollector;
+namespace App\Services\CommunityCollector;
 
 use App\Repositories\Feeds\FeedRepository;
 use App\Repositories\Users\UserRepository;
-use App\Services\DataCollector\Contracts\SelectNodeContract;
+use App\Services\CommunityCollector\Contracts\SelectNodeContract;
 
 class SelectNodeCallback implements SelectNodeContract
 {
