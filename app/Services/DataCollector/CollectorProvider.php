@@ -41,19 +41,19 @@ class CollectorProvider extends ServiceProvider
     /*
      * FMKorea
      * */
-    $this->app->singleton(Community\Platform\FMKorea\FMKorea::class, function ($app) use($selectNodeCallback) {
-        return new Community\Platform\FMKorea\FMKorea($selectNodeCallback);
+    $this->app->singleton(Platform\Community\FMKorea\FMKorea::class, function ($app) use($selectNodeCallback) {
+        return new Platform\Community\FMKorea\FMKorea($selectNodeCallback);
     });
-    $this->app->singleton(Community\Platform\FMKorea\Humor::class, function ($app) use($selectNodeCallback) {
-        return new Community\Platform\FMKorea\Humor($selectNodeCallback);
+    $this->app->singleton(Platform\Community\FMKorea\Humor::class, function ($app) use($selectNodeCallback) {
+        return new Platform\Community\FMKorea\Humor($selectNodeCallback);
     });
-    $this->app->singleton(Community\Platform\FMKorea\Gif::class, function ($app) use($selectNodeCallback) {
-        return new Community\Platform\FMKorea\Gif($selectNodeCallback);
+    $this->app->singleton(Platform\Community\FMKorea\Gif::class, function ($app) use($selectNodeCallback) {
+        return new Platform\Community\FMKorea\Gif($selectNodeCallback);
     });
 
     $this->app->bind(CommunityCollectorService::class, function ($app) {
         return new CommunityCollectorService([
-            $app->make(Community\Platform\FMKorea\Humor::class),
+            $app->make(Platform\Community\FMKorea\Humor::class),
             // $app->make(Platform\FMKorea\FMKorea::class),
             //                $app->make(\App\Services\DataCollector\Platform\Naver::class),
             //                $app->make(\App\Services\DataCollector\Platform\Daum::class),

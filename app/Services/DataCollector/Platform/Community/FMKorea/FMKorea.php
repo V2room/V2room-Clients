@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\DataCollector\Community\Platform\FMKorea;
+namespace App\Services\DataCollector\Platform\Community\FMKorea;
 
 use App\Services\DataCollector\Http\Caller;
 

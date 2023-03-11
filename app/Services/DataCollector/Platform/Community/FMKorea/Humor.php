@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\DataCollector\Community\Platform\FMKorea;
+namespace App\Services\DataCollector\Platform\Community\FMKorea;
 
 class Humor extends FMKorea
 {
