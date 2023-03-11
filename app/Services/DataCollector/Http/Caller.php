@@ -15,8 +15,8 @@ abstract class Caller
 
     protected string $regTitle = '^(&nbsp)^';
     protected string $regCategory = '^(&nbsp)^';
-    protected string $regWriter = '^(/)^';
-    protected string $regDetail = '^(&®nbsp)^';
+    protected string $regWriter = '^(&nbsp)^';
+    protected string $regDetail = '^(&nbsp)^';
 
     public function __construct(protected SelectNodeContract $callback)
     {
@@ -42,13 +42,11 @@ abstract class Caller
     #[NoReturn]
     public function call(): void
     {
-        $response = $this->client->get($this->buildListUri());
-        $dom = new Dom();
-        $dom->loadStr($response->getBody()->getContents());
-        $tags = $dom->find($this->getListItemSelector());
+        $tags = $this->moveToList();
         $continue = true;
         foreach ($tags as $tag) {
-            $continue = $this->callback->select($this->extractTitle($tag), $this->extractCategory($tag), $this->extractWriter($tag), $this->extractDetailUri($tag));
+            $detailTag = $this->moveToDetail($this->extractDetailUri($tag));
+            $continue = $this->callback->select($this->extractTitle($tag), $this->extractCategory($tag), $this->extractWriter($tag), $this->extractDetailUri($tag), $this->extractContent($detailTag));
             if (!$continue) {
                 break;
             }
@@ -74,6 +72,22 @@ abstract class Caller
     {
         $this->addPage();
         $this->call();
+    }
+
+    protected function moveToList(): Dom\Collection|null
+    {
+        $response = $this->client->get($this->buildListUri());
+        $dom = new Dom();
+        $dom->loadStr($response->getBody()->getContents());
+        return $dom->find($this->getListItemSelector());
+    }
+
+    protected function moveToDetail($url): Dom\HtmlNode|null
+    {
+        $response = $this->client->get($url);
+        $dom = new Dom();
+        $dom->loadStr($response->getBody()->getContents());
+        return $dom->find($this->getContentSelector())[0];
     }
 
     protected function buildListUri(): string
@@ -114,6 +128,12 @@ abstract class Caller
         return $this->replaceString($this->regDetail, '', $node->getAttribute('href'));
     }
 
+    protected function extractContent(Dom\HtmlNode $node): string
+    {
+        $node = $node->find($this->getContentSelector());
+        return $this->replaceString($this->regDetail, '', $node->text());
+    }
+
     protected function replaceString(string $regex, string $replacement, string $subject): string
     {
         return Str::squish(preg_replace($regex, $replacement, $subject));
@@ -148,6 +168,7 @@ abstract class Caller
     abstract protected function getWriterSelector(): string;
 
     abstract protected function getDetailSelector(): string;
+    abstract protected function getContentSelector(): string;
 
     abstract protected function getType(): string;
 

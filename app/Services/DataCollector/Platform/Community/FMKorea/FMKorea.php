@@ -2,10 +2,12 @@
 
 namespace App\Services\DataCollector\Platform\Community\FMKorea;
 
-use App\Services\DataCollector\Http\Caller;
+
+use App\Services\DataCollector\Platform\Community\Caller;
 
 class FMKorea extends Caller
 {
+    protected string $regWriter = '^(/)^';
 
     protected function getBaseUri(): string
     {
@@ -64,4 +66,8 @@ class FMKorea extends Caller
         return 'fm_korea';
     }
 
+    protected function getContentSelector(): string
+    {
+        // TODO: Implement getContentSelector() method.
+    }
 }

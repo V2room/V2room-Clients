@@ -2,7 +2,9 @@
 
 namespace App\Services\DataCollector\Platform\Community\FMKorea;
 
-class Humor extends FMKorea
+use App\Services\DataCollector\Platform\Community\Contacts\Community;
+
+class Humor extends FMKorea implements Community
 {
     protected function getListUri(): string
     {

@@ -2,11 +2,11 @@
 
 namespace Tests\Feature\DataCollector;
 
-use V2room\Models\Users\User;
+use App\Services\DataCollector\Platform\News\CollectorService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class DataCollectorTest extends TestCase
+class NewsCollectorTest extends TestCase
 {
     use RefreshDatabase;
 //    use TransactionTrait;
@@ -19,7 +19,7 @@ class DataCollectorTest extends TestCase
      */
     public function test_call()
     {
-        $dataCollector = app(\App\Services\DataCollector\CommunityCollectorService::class);
+        $dataCollector = app()->make(CollectorService::class);
         $dataCollector->call();
     }
 }

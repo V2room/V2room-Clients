@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Services\DataCollector;
+namespace App\Services\DataCollector\Platform\News;
 
 use App\Repositories\Feeds\FeedRepository;
 use App\Repositories\Users\UserRepository;
 use App\Services\DataCollector\Contracts\SelectNodeContract;
 
-class CommunitySelectNodeCallback implements SelectNodeContract
+class SelectNodeCallback implements SelectNodeContract
 {
     public function __construct(
         private FeedRepository $feedRepository,
         private UserRepository $userRepository,
     ) {}
 
-    public function select(string $title, string $category, string $writer, string $uri): bool
+    public function select(string $title, string $category, string $writer, string $uri, string $content): bool
     {
         $user = $this->userRepository->getCsUser();
         $this->feedRepository->store([
