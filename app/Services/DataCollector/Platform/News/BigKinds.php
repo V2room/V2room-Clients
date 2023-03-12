@@ -41,8 +41,7 @@ class BigKinds extends Caller
 
     protected function getListItemSelector(): string
     {
-        // TODO: Implement getListItemSelector() method.
-        return '';
+        return '.news-item';
     }
 
     protected function getTitleSelector(): string
