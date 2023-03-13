@@ -44,9 +44,7 @@ abstract class Caller
     {
         $tags = $this->moveToList();
         $continue = true;
-        dd($tags);
         foreach ($tags as $tag) {
-            dd($tag);
             $detailTag = $this->moveToDetail($this->extractDetailUri($tag));
             $continue = $this->callback->select($this->extractTitle($tag), $this->extractCategory($tag), $this->extractWriter($tag), $this->extractDetailUri($tag), $this->extractContent($detailTag));
             if (!$continue) {
@@ -80,7 +78,6 @@ abstract class Caller
     {
         $response = $this->client->get($this->buildListUri());
         $dom = new Dom();
-        dd($response->getBody()->getContents());
         $dom->loadStr($response->getBody()->getContents());
         return $dom->find($this->getListItemSelector());
     }
@@ -127,7 +124,6 @@ abstract class Caller
 
     protected function extractDetailUri(Dom\HtmlNode $node): string
     {
-        dd($node);
         $node = $node->find($this->getDetailSelector());
         return $this->replaceString($this->regDetail, '', $node->getAttribute('href'));
     }
