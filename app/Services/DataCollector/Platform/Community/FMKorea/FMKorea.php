@@ -3,9 +3,9 @@
 namespace App\Services\DataCollector\Platform\Community\FMKorea;
 
 
-use App\Services\DataCollector\Platform\Community\Caller;
+use App\Services\DataCollector\Platform\Community\HttpCaller;
 
-class FMKorea extends Caller
+class FMKorea extends HttpCaller
 {
     protected string $regWriter = '^(/)^';
 

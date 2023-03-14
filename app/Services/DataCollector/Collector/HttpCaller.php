@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\DataCollector\Http;
+namespace App\Services\DataCollector\Collector;
 
 use App\Services\DataCollector\Contracts\SelectNodeContract;
 use GuzzleHttp\Client;
@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 use JetBrains\PhpStorm\NoReturn;
 use PHPHtmlParser\Dom;
 
-abstract class Caller
+abstract class HttpCaller
 {
     protected Client $client;
     protected int $page = 1;
@@ -43,9 +43,11 @@ abstract class Caller
     public function call(): void
     {
         $tags = $this->moveToList();
+        dd($tags);
         $continue = true;
         foreach ($tags as $tag) {
             $detailTag = $this->moveToDetail($this->extractDetailUri($tag));
+            dd($detailTag);
             $continue = $this->callback->select($this->extractTitle($tag), $this->extractCategory($tag), $this->extractWriter($tag), $this->extractDetailUri($tag), $this->extractContent($detailTag));
             if (!$continue) {
                 break;

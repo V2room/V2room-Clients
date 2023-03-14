@@ -4,7 +4,7 @@ namespace App\Services\DataCollector\Platform\News;
 
 use PHPHtmlParser\Dom;
 
-class BigKinds extends Caller
+class BigKinds extends HttpCaller
 {
 
     protected function moveToDetail($url): Dom\HtmlNode|null

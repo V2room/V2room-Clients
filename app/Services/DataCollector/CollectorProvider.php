@@ -37,7 +37,7 @@ class CollectorProvider extends ServiceProvider
         );
 
         $this->app->when([
-            Platform\Community\Caller::class,
+            Platform\Community\HttpCaller::class,
             Platform\Community\FMKorea\FMKorea::class,
             Platform\Community\FMKorea\Humor::class,
             Platform\Community\FMKorea\Gif::class,
@@ -93,7 +93,7 @@ class CollectorProvider extends ServiceProvider
         $this->app->instance(Platform\News\SelectNodeCallback::class, $selectNodeCallback);
 
         $this->app->when([
-            Platform\News\Caller::class,
+            Platform\News\HttpCaller::class,
             Platform\News\BigKinds::class,
         ])
                   ->needs(Contracts\SelectNodeContract::class)

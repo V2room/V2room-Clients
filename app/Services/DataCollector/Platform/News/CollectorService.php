@@ -5,7 +5,7 @@ namespace App\Services\DataCollector\Platform\News;
 class CollectorService
 {
     /**
-     * @param \App\Services\DataCollector\Platform\News\Caller[] $platforms
+     * @param \App\Services\DataCollector\Platform\News\HttpCaller[] $platforms
      * @author  WilsonParker
      * @added   2023/03/06
      * @updated 2023/03/06
